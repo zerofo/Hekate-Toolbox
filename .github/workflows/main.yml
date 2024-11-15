@@ -19,7 +19,7 @@ jobs:
     - name: Build project
       run: |
           git config --global --add safe.directory `pwd` && \
-          git submodule update --remote && make -j2
+          git submodule update --remote && make -j2;
           ls -la * 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
