@@ -20,7 +20,7 @@ jobs:
     - name: Build project
       run: |
           git config --global --add safe.directory `pwd` && \
-          sudo -E apt install -y libtiff-dev
+          sudo -E apt install -y libfreetype6-dev
           git submodule update --remote && make -j2;
           ls -la * 
     - name: Upload artifacts
