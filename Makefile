@@ -32,7 +32,7 @@ include $(DEVKITPRO)/libnx/switch_rules
 #---------------------------------------------------------------------------------
 VERSION_MAJOR := 4
 VERSION_MINOR := 0
-VERSION_MICRO := 2
+VERSION_MICRO := 4
 
 APP_TITLE	:=	Hekate Toolbox
 APP_AUTHOR	:=	WerWolv, cathery
@@ -56,14 +56,14 @@ ARCH	:=	-march=armv8-a -mtune=cortex-a57 -mtp=soft -fPIE
 CFLAGS	:=	-g -Wall -O2 -ffunction-sections \
 			$(ARCH) $(DEFINES)
 
-CFLAGS	+=	$(INCLUDE) -D__SWITCH__ `pkg-config --cflags freetype2`
+CFLAGS  += $(INCLUDE) -D__SWITCH__ `$(PREFIX)pkg-config --cflags freetype2`
 
 CXXFLAGS	:= $(CFLAGS) -fno-rtti -fexceptions -std=gnu++17
 
 ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=$(DEVKITPRO)/libnx/switch.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS	:= -lnx `pkg-config --libs freetype2` -lpng -lz -lharfbuzz -lbz2 -lturbojpeg \
+LIBS   := -lnx `$(PREFIX)pkg-config --libs freetype2` -lturbojpeg \
 			$(foreach lib,$(CUSTOM_LIBS),-l$(lib))
 
 #---------------------------------------------------------------------------------
